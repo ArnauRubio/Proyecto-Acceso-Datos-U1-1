@@ -1,4 +1,4 @@
-package com.videoteca.model;
+package com.videoteca.modelo;
 
 import java.io.Serializable;
 

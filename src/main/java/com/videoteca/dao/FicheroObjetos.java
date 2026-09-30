@@ -8,7 +8,7 @@ public class FicheroObjetos<T extends Serializable> {
     private final File fichero;
 
     public FicheroObjetos(String ruta) {
-        this.fichero = new File(ruta);
+        fichero = new File(ruta);
     }
 
     public List<T> leer() throws IOException, ClassNotFoundException {
@@ -18,8 +18,10 @@ public class FicheroObjetos<T extends Serializable> {
             while (true) {
                 try {
                     Object objeto = ois.readObject();
-                    if (objeto == null) break;
-                    @SuppressWarnings("unchecked") T dato = (T) objeto;
+                    if (objeto == null) {
+                        break;
+                    }
+                    T dato = (T) objeto;
                     lista.add(dato);
                 } catch (EOFException e) {
                     break;
@@ -31,7 +33,9 @@ public class FicheroObjetos<T extends Serializable> {
 
     public void escribir(List<T> lista) throws IOException {
         File padre = fichero.getParentFile();
-        if (padre != null) padre.mkdirs();
+        if (padre != null) {
+            padre.mkdirs();
+        }
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(fichero))) {
             for (T dato : lista) oos.writeObject(dato);
             oos.writeObject(null);
