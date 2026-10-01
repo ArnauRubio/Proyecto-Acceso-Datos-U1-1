@@ -12,16 +12,17 @@ Aplicación de Java sobre una Videoteca
     - -Prestamo
     - -BaseDatos
 -
-- El programa funciona relacionando ficheros mediante IDs,
-- Exporta a XML con XStream.
-- Control de errores y validación de entradas.
+- El programa funciona relacionando ficheros mediante IDs
+- Exporta a XML con XStream
+- Control de errores y validación de entradas
 
 ## Extras
 
 He intentado añadir estos puntos extra:
 
-1. Lectura de ficheros XML.
-2. Generación de ficheros JSON.
+1. Lectura de ficheros XML
+2. Generación de ficheros JSON
+3. Control de errores
 
 ## Ejecución en IntelliJ
 
