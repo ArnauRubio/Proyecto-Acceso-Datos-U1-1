@@ -11,7 +11,7 @@ import java.nio.charset.StandardCharsets;
 public class XmlJsonManager {
 
     /**
-     * Generacion del XML
+     * Funcion para la eneracion del XML
      * @param db la base de datos donde se guarda
      * @param ruta en donde se guarda en la base da datos
      * @throws IOException exepcion que se dispara si hay un error de escritura
@@ -24,7 +24,7 @@ public class XmlJsonManager {
     }
 
     /**
-     * Lectura del XML
+     * Funcion para la lectura del XML
      * @param ruta desde donde se lee el XML
      * @return
      * @throws IOException exepcion que se dispara si hay un error de escritura
@@ -37,7 +37,7 @@ public class XmlJsonManager {
     }
 
     /**
-     * Generacion del JSON
+     * Funcion que genera el JSON
      * @param db la base de datos
      * @param ruta donde colocarlo en la base de datos
      * @throws IOException exepcion que se dispara si hay un error de escritura
@@ -50,8 +50,8 @@ public class XmlJsonManager {
     }
 
     /**
-     * Seteo del Xstream con la base de datos
-     * @return
+     * Configuracion del Xstream con la base de datos
+     * @return devuelve el Xstream
      */
     private static XStream configurarXStream() {
         XStream xstream = new XStream();

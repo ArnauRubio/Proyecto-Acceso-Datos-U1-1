@@ -62,6 +62,10 @@ public class Main {
         System.out.println("0. Salir");
     }
 
+    /**
+     * Funcion para mostrar los videojuegos disponibles
+     * @throws Exception
+     */
     private static void listarVideojuegos() throws Exception {
         List<Videojuego> videojuegos = acciones.videojuegos();
 
@@ -70,6 +74,10 @@ public class Main {
         }
     }
 
+    /**
+     * Funcion que lista los usuarios existentes
+     * @throws Exception
+     */
     private static void listarUsuarios() throws Exception {
         List<Usuario> usuarios = acciones.usuarios();
 
@@ -78,6 +86,10 @@ public class Main {
         }
     }
 
+    /**
+     * Funcion que lista los prestamos activos
+     * @throws Exception
+     */
     private static void listarPrestamos() throws Exception {
         List<Prestamo> prestamos = acciones.prestamos();
 
@@ -86,6 +98,10 @@ public class Main {
         }
     }
 
+    /**
+     * Funcion que permite la creacion grafica de videojuegos
+     * @throws Exception
+     */
     private static void crearVideojuego() throws Exception {
         int id = entero("ID: ");
         String titulo = texto("Título: ");
@@ -106,6 +122,10 @@ public class Main {
         System.out.println("Creación realizada.");
     }
 
+    /**
+     * Funcion que modifica graficamente los juegos
+     * @throws Exception
+     */
     private static void modificarVideojuego() throws Exception {
         int id = entero("ID a modificar: ");
         String titulo = texto("Nuevo título: ");
@@ -126,11 +146,19 @@ public class Main {
         System.out.println("Modificación realizada.");
     }
 
+    /**
+     * Funcion para el borrado grafico de videojuegos
+     * @throws Exception
+     */
     private static void borrarVideojuego() throws Exception {
         acciones.borrarVideojuego(entero("ID a borrar: "));
         System.out.println("Videojuego eliminado.");
     }
 
+    /**
+     * Funcion para la creacion grafica de ususarios
+     * @throws Exception
+     */
     private static void crearUsuario() throws Exception {
         int id = entero("ID: ");
         String nombre = texto("Nombre: ");
@@ -139,6 +167,10 @@ public class Main {
         System.out.println("Usurio creado.");
     }
 
+    /**
+     * Funcion para la modificacion grafica de usuarios
+     * @throws Exception
+     */
     private static void modificarUsuario() throws Exception {
         int id = entero("ID a modificar: ");
         String nombre = texto("Nuevo nombre: ");
@@ -147,11 +179,19 @@ public class Main {
         System.out.println("Modificación realizada.");
     }
 
+    /**
+     * Funcion para el borrado grafico de usuarios
+     * @throws Exception
+     */
     private static void borrarUsuario() throws Exception {
         acciones.borrarUsuario(entero("ID a borrar: "));
         System.out.println("Usuario eliminado.");
     }
 
+    /**
+     * Funcion para la creacion grafica de prestamos
+     * @throws Exception
+     */
     private static void crearPrestamo() throws Exception {
         int id = entero("ID préstamo: ");
         int usuario = entero("ID usuario: ");
@@ -160,22 +200,38 @@ public class Main {
         System.out.println("Préstamo creado.");
     }
 
+    /**
+     * Funcion para devoler graficamente un prestamo
+     * @throws Exception
+     */
     private static void devolverPrestamo() throws Exception {
         acciones.devolverPrestamo(entero("ID préstamo: "));
         System.out.println("Préstamo devuelto.");
     }
 
+    /**
+     * Funcion para exportar XMLs
+     * @throws Exception
+     */
     private static void exportarXml() throws Exception {
         XmlJsonManager.exportarXml(acciones.cargarTodo(), "data/videoteca.xml");
         System.out.println("XML crado");
     }
 
+    /**
+     * Funcion para importar XMLs
+     * @throws Exception
+     */
     private static void importarXml() throws Exception {
         BaseDatos db = XmlJsonManager.importarXml("data/videoteca.xml");
         acciones.guardarTodo(db);
         System.out.println("XML importado correctamente");
     }
 
+    /**
+     * Funcion para exportar JSONs
+     * @throws Exception
+     */
     private static void exportarJson() throws Exception {
         XmlJsonManager.exportarJson(acciones.cargarTodo(), "data/videoteca.json");
         System.out.println("JSON creado correctamente");

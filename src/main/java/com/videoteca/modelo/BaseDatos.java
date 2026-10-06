@@ -4,6 +4,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Clase para la administracion de la "base de datos"
+ */
 public class BaseDatos implements Serializable {
     private List<Videojuego> videojuegos = new ArrayList<>();
     private List<Usuario> usuarios = new ArrayList<>();
