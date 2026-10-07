@@ -60,9 +60,12 @@ public class XmlJsonManager {
         xstream.alias("Videojuego", com.videoteca.modelo.Videojuego.class);
         xstream.alias("Usuario", com.videoteca.modelo.Usuario.class);
         xstream.alias("Prestamo", com.videoteca.modelo.Prestamo.class);
-        xstream.addImplicitCollection(BaseDatos.class, "videojuegos");
-        xstream.addImplicitCollection(BaseDatos.class, "usuarios");
-        xstream.addImplicitCollection(BaseDatos.class, "prestamos");
+        xstream.addImplicitCollection(BaseDatos.class, "videojuegos",
+                "Videojuego", com.videoteca.modelo.Videojuego.class);
+        xstream.addImplicitCollection(BaseDatos.class, "usuarios",
+                "Usuario", com.videoteca.modelo.Usuario.class);
+        xstream.addImplicitCollection(BaseDatos.class, "prestamos",
+                "Prestamo", com.videoteca.modelo.Prestamo.class);
         return xstream;
     }
 }

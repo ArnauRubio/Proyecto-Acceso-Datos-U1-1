@@ -223,7 +223,11 @@ public class Main {
      * @throws Exception en caso de error de lectura
      */
     private static void importarXml() throws Exception {
+        System.out.println(new File("data/videoteca.xml").getAbsolutePath());
         BaseDatos db = XmlJsonManager.importarXml("data/videoteca.xml");
+        System.out.println("Videojuegos leídos: "
+                + (db.getVideojuegos() == null ? "lista null" : db.getVideojuegos().size()));
+        acciones.guardarTodo(db);
         acciones.guardarTodo(db);
         System.out.println("XML importado correctamente");
     }
