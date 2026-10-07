@@ -4,6 +4,7 @@ import com.videoteca.dao.FicheroObjetos;
 import com.videoteca.modelo.*;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -30,7 +31,7 @@ public class VideotecaAcciones {
     /**
      * Funcion para crear un nuevo videojuego
      * @param v el videojuego en cuestion
-     * @throws Exception en caso de que ya exista un juego con ese mismo nombre
+     * @throws Exception en caso de que ya exista un juego con ese mismo id
      */
 
     public void crearVideojuego(Videojuego v) throws Exception {
@@ -51,7 +52,7 @@ public class VideotecaAcciones {
     /**
      * Funcion para modificar videjuegos
      * @param v el videojeugo a modificar
-     * @throws Exception en caso de que no exista ningun juego con el nombre por el que se pidio
+     * @throws Exception en caso de que no exista ningun juego con el id por el que se pidio
      */
     public void modificarVideojuego(Videojuego v) throws Exception {
 
@@ -230,10 +231,6 @@ public class VideotecaAcciones {
             throw new IllegalArgumentException("No existe el videojuego.");
         }
 
-        if (!usuarioEncontrado.isActivo() || !videojuegoEncontrado.isActivo()) {
-            throw new IllegalArgumentException("Usuario o videojuego dados de baja");
-        }
-
         for (Prestamo prestamo : ps) {
             if (prestamo.getId() == p.getId()) {
                 throw new IllegalArgumentException("Ya existe ese ID de prestamo.");
@@ -246,7 +243,7 @@ public class VideotecaAcciones {
             }
         }
 
-        prestamos().add(p);
+        ps.add(p);
         fPrestamos.escribir(ps);
     }
 
@@ -286,8 +283,19 @@ public class VideotecaAcciones {
      * @throws IOException en caso de que haya problemas a la hora de ejecutar el guardado
      */
     public void guardarTodo(BaseDatos db) throws IOException {
+        if (db.getVideojuegos() == null) {
+            db.setVideojuegos(new ArrayList<>());
+        }
+        if (db.getUsuarios() == null) {
+            db.setUsuarios(new ArrayList<>());
+        }
+        if (db.getPrestamos() == null) {
+            db.setPrestamos(new ArrayList<>());
+        }
+
         fVideojuegos.escribir(db.getVideojuegos());
         fUsuarios.escribir(db.getUsuarios());
         fPrestamos.escribir(db.getPrestamos());
     }
+
 }

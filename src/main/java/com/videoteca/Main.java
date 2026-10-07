@@ -57,14 +57,14 @@ public class Main {
         System.out.println("10. Crear préstamo");
         System.out.println("11. Devolver préstamo");
         System.out.println("12. Exportar XML (XStream)");
-        System.out.println("13. EXTRA 1 - Leer XML");
-        System.out.println("14. EXTRA 2 - Generar JSON");
+        System.out.println("13. Leer XML");
+        System.out.println("14. Generar JSON");
         System.out.println("0. Salir");
     }
 
     /**
      * Funcion para mostrar los videojuegos disponibles
-     * @throws Exception
+     * @throws Exception si ocurre algun error de lectura
      */
     private static void listarVideojuegos() throws Exception {
         List<Videojuego> videojuegos = acciones.videojuegos();
@@ -76,7 +76,7 @@ public class Main {
 
     /**
      * Funcion que lista los usuarios existentes
-     * @throws Exception
+     * @throws Exception en caso de error de lectura
      */
     private static void listarUsuarios() throws Exception {
         List<Usuario> usuarios = acciones.usuarios();
@@ -88,7 +88,7 @@ public class Main {
 
     /**
      * Funcion que lista los prestamos activos
-     * @throws Exception
+     * @throws Exception en caso de error de lectura
      */
     private static void listarPrestamos() throws Exception {
         List<Prestamo> prestamos = acciones.prestamos();
@@ -100,7 +100,7 @@ public class Main {
 
     /**
      * Funcion que permite la creacion grafica de videojuegos
-     * @throws Exception
+     * @throws Exception si ocurre un error de lectura o ya existe ese id
      */
     private static void crearVideojuego() throws Exception {
         int id = entero("ID: ");
@@ -124,7 +124,7 @@ public class Main {
 
     /**
      * Funcion que modifica graficamente los juegos
-     * @throws Exception
+     * @throws Exception en caso de error de lectura
      */
     private static void modificarVideojuego() throws Exception {
         int id = entero("ID a modificar: ");
@@ -148,7 +148,7 @@ public class Main {
 
     /**
      * Funcion para el borrado grafico de videojuegos
-     * @throws Exception
+     * @throws Exception en caso de error de lectura
      */
     private static void borrarVideojuego() throws Exception {
         acciones.borrarVideojuego(entero("ID a borrar: "));
@@ -157,7 +157,7 @@ public class Main {
 
     /**
      * Funcion para la creacion grafica de ususarios
-     * @throws Exception
+     * @throws Exception en caso de error de lectura
      */
     private static void crearUsuario() throws Exception {
         int id = entero("ID: ");
@@ -169,7 +169,7 @@ public class Main {
 
     /**
      * Funcion para la modificacion grafica de usuarios
-     * @throws Exception
+     * @throws Exception en caso de error de lectura
      */
     private static void modificarUsuario() throws Exception {
         int id = entero("ID a modificar: ");
@@ -181,7 +181,7 @@ public class Main {
 
     /**
      * Funcion para el borrado grafico de usuarios
-     * @throws Exception
+     * @throws Exception en caso de error de lectura
      */
     private static void borrarUsuario() throws Exception {
         acciones.borrarUsuario(entero("ID a borrar: "));
@@ -190,7 +190,7 @@ public class Main {
 
     /**
      * Funcion para la creacion grafica de prestamos
-     * @throws Exception
+     * @throws Exception en caso de error de lectura
      */
     private static void crearPrestamo() throws Exception {
         int id = entero("ID préstamo: ");
@@ -202,7 +202,7 @@ public class Main {
 
     /**
      * Funcion para devoler graficamente un prestamo
-     * @throws Exception
+     * @throws Exception en caso de error de lectura
      */
     private static void devolverPrestamo() throws Exception {
         acciones.devolverPrestamo(entero("ID préstamo: "));
@@ -211,7 +211,7 @@ public class Main {
 
     /**
      * Funcion para exportar XMLs
-     * @throws Exception
+     * @throws Exception en caso de error de lectura
      */
     private static void exportarXml() throws Exception {
         XmlJsonManager.exportarXml(acciones.cargarTodo(), "data/videoteca.xml");
@@ -220,7 +220,7 @@ public class Main {
 
     /**
      * Funcion para importar XMLs
-     * @throws Exception
+     * @throws Exception en caso de error de lectura
      */
     private static void importarXml() throws Exception {
         BaseDatos db = XmlJsonManager.importarXml("data/videoteca.xml");
@@ -230,18 +230,28 @@ public class Main {
 
     /**
      * Funcion para exportar JSONs
-     * @throws Exception
+     * @throws Exception en caso de errror de lectura
      */
     private static void exportarJson() throws Exception {
         XmlJsonManager.exportarJson(acciones.cargarTodo(), "data/videoteca.json");
         System.out.println("JSON creado correctamente");
     }
 
+    /**
+     * Elimina los espacios del principio y final de un texto
+     * @param mensaje que solicita la entrada de texto
+     * @return el texto sin espacios al inicio y final
+     */
     private static String texto(String mensaje) {
         System.out.print(mensaje);
         return sc.nextLine().trim();
     }
 
+    /**
+     * Solicita un numero entero correcto o pide un nuevo valor
+     * @param mensaje el texto de solicitud
+     * @return el entero introducido
+     */
     private static int entero(String mensaje) {
         while (true) {
             try {
@@ -252,6 +262,11 @@ public class Main {
         }
     }
 
+    /**
+     * Solicita un numero decimal correcto o piden de nuevo un valor
+     * @param mensaje el texto de solicitud
+     * @return el decimal introducido
+     */
     private static double decimal(String mensaje) {
         while (true) {
             try {
@@ -261,4 +276,5 @@ public class Main {
             }
         }
     }
+
 }

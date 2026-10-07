@@ -11,9 +11,9 @@ import java.nio.charset.StandardCharsets;
 public class XmlJsonManager {
 
     /**
-     * Funcion para la eneracion del XML
-     * @param db la base de datos donde se guarda
-     * @param ruta en donde se guarda en la base da datos
+     * Funcion para exportar la BD a XML
+     * @param db datos a exportar
+     * @param ruta en donde se guarda el XML
      * @throws IOException exepcion que se dispara si hay un error de escritura
      */
     public static void exportarXml(BaseDatos db, String ruta) throws IOException {
@@ -24,10 +24,10 @@ public class XmlJsonManager {
     }
 
     /**
-     * Funcion para la lectura del XML
+     * Funcion para importar la BD desde el XML
      * @param ruta desde donde se lee el XML
-     * @return
-     * @throws IOException exepcion que se dispara si hay un error de escritura
+     * @return la BD
+     * @throws IOException exepcion que se dispara si hay un error de lectura o apertura
      */
     public static BaseDatos importarXml(String ruta) throws IOException {
         XStream xstream = configurarXStream();
@@ -37,10 +37,10 @@ public class XmlJsonManager {
     }
 
     /**
-     * Funcion que genera el JSON
-     * @param db la base de datos
-     * @param ruta donde colocarlo en la base de datos
-     * @throws IOException exepcion que se dispara si hay un error de escritura
+     * Funcion que genera el JSON a partir de la BD
+     * @param db datos a exportar
+     * @param ruta destino del archivo
+     * @throws IOException exepcion que se dispara si hay un error de escritura o apertura
      */
     public static void exportarJson(BaseDatos db, String ruta) throws IOException {
         String json = new GsonBuilder().setPrettyPrinting().create().toJson(db);
@@ -50,8 +50,8 @@ public class XmlJsonManager {
     }
 
     /**
-     * Configuracion del Xstream con la base de datos
-     * @return devuelve el Xstream
+     * Configuracion del Xstream con la aplicacion
+     * @return devuelve el Xstream instanciado
      */
     private static XStream configurarXStream() {
         XStream xstream = new XStream();

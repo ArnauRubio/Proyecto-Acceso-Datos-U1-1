@@ -16,11 +16,10 @@ public class FicheroObjetos<T extends Serializable> {
     }
 
     /**
-     * Metodo para leer los ficheros
+     * Metodo para leer los objectos del archivo
      * @return una lista con los datos leidos
-     * @throws IOException en caso de que no se encuentre una lista donde guardar los datos,
-     * o un fichero para leer
-     * @throws ClassNotFoundException
+     * @throws IOException en caso de errores de lectura del archivo
+     * @throws ClassNotFoundException en caso de no encontrar la clase de un objecto leido
      */
     public List<T> leer() throws IOException, ClassNotFoundException {
         List<T> lista = new ArrayList<>();
@@ -44,8 +43,8 @@ public class FicheroObjetos<T extends Serializable> {
 
     /**
      * Metodo para la escritura de los ficheros
-     * @param lista desde las cuales se escribe la informacion
-     * @throws IOException en caso de que no exista la lista
+     * @param lista los objectos que se van a escribir
+     * @throws IOException en caso de errores de apertura o escritura
      */
     public void escribir(List<T> lista) throws IOException {
         File padre = fichero.getParentFile();
